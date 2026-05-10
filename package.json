@@ -1,0 +1,26 @@
+{
+  "name": "2436836_tpbibiotheque_serviceweb",
+  "version": "1.0.0",
+  "description": "Projet Final ServiceWeb",
+  "author": "Maxime Vallièrs",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "dotenv": "^17.2.4",
+    "express": "^5.2.1",
+    "express-openapi-validator": "^5.6.2",
+    "morgan": "^1.10.1",
+    "mysql": "^2.18.1",
+    "mysql2": "^3.17.0",
+    "pg": "^8.20.0",
+    "swagger-ui-express": "^5.0.1",
+    "uuid": "^14.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.11"
+  }
+}
