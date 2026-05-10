@@ -4,7 +4,8 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import swaggerUi from 'swagger-ui-express';
-import routeur from './src/routes/bibliotheque.route.js';
+import router from './src/routes/bibliotheque.route.js';
+import cors from 'cors';
 
 // Configuration pour ESM (__dirname n'existe pas par défaut)
 const __filename = fileURLToPath(import.meta.url);
@@ -24,6 +25,9 @@ const swaggerOptions = {
 
 // Middleware pour parser le JSON
 app.use(express.json());
+// Middleware pour Cross-Origin Resource Sharing (les erreur html)
+app.use(cors());
+
 
 // Journalisation (Morgan) - Écrit les logs dans access.log
 const accessLogStream = fs.createWriteStream(path.join(__dirname, 'access.log'), { flags: 'a' });
@@ -41,7 +45,7 @@ app.use('/api/docs',
     swaggerUi.setup(swaggerDocument, swaggerOptions)
 );
 
-app.use('/api', routeur);
+app.use('/api', router);
 
 
 // Gestion des routes non trouvées (404)

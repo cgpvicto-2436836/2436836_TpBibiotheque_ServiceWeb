@@ -3,7 +3,7 @@
   "info": {
     "title": "API Bibliothèque - Système de gestion de prêts",
     "version": "1.0.0",
-    "description": "Documentation technique du service Web pour la gestion des livres et des prêts. Développé pour l'épreuve finale de Services Web. (Aide de https://swagger.io/specification/ et de https://servicesweb-examen-2-h26-v1.onrender.com/api/docs/ le 9 mai 2026)"
+    "description": "Documentation technique du service Web pour la gestion des livres et des prêts. Développé pour l'épreuve finale de Services Web. (Aide de https://swagger.io/specification/ et de https://servicesweb-revision-examen-2-h26.onrender.com/api/docs/ le 9 mai 2026)"
   },
   "servers": [
     {
