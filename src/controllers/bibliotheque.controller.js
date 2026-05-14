@@ -185,3 +185,26 @@ export const deletePret = async (req, res) => {
         res.status(500).json({ message: "Erreur lors de la suppression du prêt" });
     }
 };
+
+// PUT /prets/:id
+export const updatePret = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { nom_emprunteur, date_retour_prevue } = req.body;
+
+        if (!nom_emprunteur || !date_retour_prevue) {
+            return res.status(400).json({ message: "Le nom de l'emprunteur et la date de retour sont requis" });
+        }
+
+        const pretModifie = await model.modifierPret(id, { nom_emprunteur, date_retour_prevue });
+
+        if (!pretModifie) {
+            return res.status(404).json({ message: "Prêt non trouvé" });
+        }
+
+        res.status(200).json(pretModifie);
+    } catch (erreur) {
+        console.error(`Erreur 500: ${erreur.message}`);
+        res.status(500).json({ message: "Erreur lors de la modification du prêt" });
+    }
+};

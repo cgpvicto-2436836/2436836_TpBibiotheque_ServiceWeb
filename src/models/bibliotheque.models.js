@@ -64,3 +64,12 @@ export const supprimerPret = async (id) => {
     );
     return res.rows[0];
 };
+
+export const modifierPret = async (pretId, data) => {
+    const { nom_emprunteur, date_retour_prevue } = data;
+    const res = await pool.query(
+        "UPDATE prets SET nom_emprunteur = $1, date_retour_prevue = $2 WHERE id = $3 RETURNING *",
+        [nom_emprunteur, date_retour_prevue, pretId]
+    );
+    return res.rows[0];
+};

@@ -25,6 +25,7 @@ const swaggerOptions = {
 
 // Middleware pour parser le JSON
 app.use(express.json());
+
 // Middleware pour Cross-Origin Resource Sharing (les erreur html)
 app.use(cors());
 
