@@ -20,7 +20,7 @@ router.delete('/livres/:id', biblioCtrl.delLivre);
 // Gestion des prêts
 router.post('/livres/:livreId/prets', biblioCtrl.addPret);
 router.patch('/prets/:id/statut', biblioCtrl.patchStatutPret);
-router.put('/prets/:id', updatePret);
+router.put('/prets/:id', biblioCtrl.updatePret);
 router.delete('/prets/:id', biblioCtrl.deletePret);
 
 export default router;
