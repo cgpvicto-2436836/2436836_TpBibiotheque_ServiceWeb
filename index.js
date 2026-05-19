@@ -55,6 +55,6 @@ app.use((req, res) => {
 
 // Démarrage du serveur
 app.listen(PORT, () => {
-    console.log("[Serveur] Démarré sur http://localhost:3000");
-    console.log("[Docs] Documentation disponible sur http://localhost:3000/api/docs");
+    console.log(`[Serveur] Démarré sur http://localhost:${PORT}`);
+    console.log(`[Docs] Documentation disponible sur http://localhost:${PORT}/api/docs`);
 });
