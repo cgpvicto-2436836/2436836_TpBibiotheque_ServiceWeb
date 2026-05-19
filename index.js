@@ -8,8 +8,8 @@ import router from './src/routes/bibliotheque.route.js';
 import cors from 'cors';
 
 // Configuration pour ESM (__dirname n'existe pas par défaut)
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
 
 // Chargement de la documentation OpenAPI
 const swaggerDocument = JSON.parse(fs.readFileSync('./src/config/documentation.json', 'utf8'));

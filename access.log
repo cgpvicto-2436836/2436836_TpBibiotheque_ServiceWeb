@@ -192,3 +192,10 @@
 10/May/2026:17:37:31 +0000 => DELETE /api/prets/1 401 - 1494.357 ms
 10/May/2026:17:38:22 +0000 => DELETE /api/prets/1 200 - 1198.569 ms
 10/May/2026:17:39:21 +0000 => POST /api/livres 201 - 1193.443 ms
+[0mGET /api/docs [36m301[0m 1.925 ms - 158[0m
+[0mGET /api/docs/ [32m200[0m 2.118 ms - 3157[0m
+[0mGET /api/docs/swagger-ui.css [32m200[0m 4.726 ms - 178977[0m
+[0mGET /api/docs/swagger-ui-standalone-preset.js [32m200[0m 2.101 ms - 251800[0m
+[0mGET /api/docs/swagger-ui-init.js [32m200[0m 0.490 ms - 36202[0m
+[0mGET /api/docs/swagger-ui-bundle.js [32m200[0m 4.066 ms - 1526918[0m
+[0mGET /api/docs/favicon-32x32.png [32m200[0m 1.299 ms - 628[0m
