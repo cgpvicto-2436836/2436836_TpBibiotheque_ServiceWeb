@@ -28,25 +28,57 @@
       "Livre": {
         "type": "object",
         "properties": {
-          "id": { "type": "integer", "example": 1 },
-          "titre": { "type": "string", "example": "Amulet T.1 : Le gardien de la pierre" },
-          "auteur": { "type": "string", "example": "Kazu Kibuishi" },
-          "isbn": { "type": "string", "example": "978-1443145398" },
-          "statut": { "type": "string", "enum": ["disponible", "emprunté"], "example": "disponible" },
-          "description": { "type": "string", "example": "Au cours de leur première nuit dans cet étrange endroit, la mère d'émily et de Navin est enlevée par une créature à tentacules. Les deux enfants sauront-ils se débrouiller et la sauver?" },
-          "ajoute_le": { "type": "string", "format": "date-time" },
-          "bibliotheque_id": { "type": "integer", "example": 1 }
+          "id": {
+            "type": "integer",
+            "example": 1
+          },
+          "titre": {
+            "type": "string",
+            "example": "Amulet T.1 : Le gardien de la pierre"
+          },
+          "auteur": {
+            "type": "string",
+            "example": "Kazu Kibuishi"
+          },
+          "isbn": {
+            "type": "string",
+            "example": "978-1443145398"
+          },
+          "statut": {
+            "type": "string",
+            "enum": [
+              "disponible",
+              "emprunté"
+            ],
+            "example": "disponible"
+          },
+          "description": {
+            "type": "string",
+            "example": "Au cours de leur première nuit dans cet étrange endroit, la mère d'émily et de Navin est enlevée par une créature à tentacules. Les deux enfants sauront-ils se débrouiller et la sauver?"
+          },
+          "ajoute_le": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "bibliotheque_id": {
+            "type": "integer",
+            "example": 1
+          }
         }
       },
       "LivreAvecPrets": {
         "allOf": [
-          { "$ref": "#/components/schemas/Livre" },
+          {
+            "$ref": "#/components/schemas/Livre"
+          },
           {
             "type": "object",
             "properties": {
               "prets": {
                 "type": "array",
-                "items": { "$ref": "#/components/schemas/Pret" }
+                "items": {
+                  "$ref": "#/components/schemas/Pret"
+                }
               }
             }
           }
@@ -55,19 +87,45 @@
       "Pret": {
         "type": "object",
         "properties": {
-          "id": { "type": "integer", "example": 10 },
-          "livre_id": { "type": "integer", "example": 1 },
-          "nom_emprunteur": { "type": "string", "example": "Maxime Vallières" },
-          "date_debut": { "type": "string", "format": "date", "example": "2026-05-01" },
-          "date_retour_prevue": { "type": "string", "format": "date", "example": "2026-05-15" },
-          "est_termine": { "type": "boolean", "example": false },
-          "en_cours": { "type": "boolean", "example": true }
+          "id": {
+            "type": "integer",
+            "example": 10
+          },
+          "livre_id": {
+            "type": "integer",
+            "example": 1
+          },
+          "nom_emprunteur": {
+            "type": "string",
+            "example": "Maxime Vallières"
+          },
+          "date_debut": {
+            "type": "string",
+            "format": "date",
+            "example": "2026-05-01"
+          },
+          "date_retour_prevue": {
+            "type": "string",
+            "format": "date",
+            "example": "2026-05-15"
+          },
+          "est_termine": {
+            "type": "boolean",
+            "example": false
+          },
+          "en_cours": {
+            "type": "boolean",
+            "example": true
+          }
         }
       },
       "Erreur": {
         "type": "object",
         "properties": {
-          "message": { "type": "string", "example": "Message d'erreur descriptif." }
+          "message": {
+            "type": "string",
+            "example": "Message d'erreur descriptif."
+          }
         }
       }
     }
@@ -75,7 +133,9 @@
   "paths": {
     "/usagers": {
       "post": {
-        "tags": ["Usagers"],
+        "tags": [
+          "Usagers"
+        ],
         "summary": "Créer un compte bibliothèque",
         "description": "Crée un nouvel usager et sa bibliothèque. Retourne la clé API à conserver pour les requêtes protégées.",
         "requestBody": {
@@ -84,11 +144,24 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": ["nom_bibliotheque", "courriel", "mot_de_passe"],
+                "required": [
+                  "nom_bibliotheque",
+                  "courriel",
+                  "mot_de_passe"
+                ],
                 "properties": {
-                  "nom_bibliotheque": { "type": "string", "example": "Bibliothèque Alcide-Fleury" },
-                  "courriel": { "type": "string", "example": "admin@victo.com" },
-                  "mot_de_passe": { "type": "string", "example": "motdepasse123" }
+                  "nom_bibliotheque": {
+                    "type": "string",
+                    "example": "Bibliothèque Alcide-Fleury"
+                  },
+                  "courriel": {
+                    "type": "string",
+                    "example": "admin@victo.com"
+                  },
+                  "mot_de_passe": {
+                    "type": "string",
+                    "example": "motdepasse123"
+                  }
                 }
               }
             }
@@ -102,71 +175,118 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "id": { "type": "integer" },
-                    "courriel": { "type": "string" },
-                    "cle_api": { "type": "string" }
+                    "id": {
+                      "type": "integer"
+                    },
+                    "courriel": {
+                      "type": "string"
+                    },
+                    "cle_api": {
+                      "type": "string"
+                    }
                   }
                 }
               }
             }
           },
-          "400": { "description": "Données manquantes", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Erreur" } } } },
-          "500": { "description": "Erreur interne du serveur", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Erreur" } } } }
+          "400": {
+            "description": "Données manquantes",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erreur"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erreur interne du serveur",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erreur"
+                }
+              }
+            }
+          }
         }
       }
     },
     "/usagers/cle": {
-        "get": {
-          "tags": ["Usagers"],
-          "summary": "Récupérer ou régénérer la clé API",
-          "description": "Retourne la clé API de l'usager. Passer le paramètre 'nouvelle=1' pour en générer une nouvelle.",
-          "parameters": [
-            {
-              "name": "courriel",
-              "in": "query",
-              "required": true,
-              "schema": { "type": "string" },
-              "example": "admin@victo.com"
+      "get": {
+        "tags": [
+          "Usagers"
+        ],
+        "summary": "Récupérer ou régénérer la clé API",
+        "description": "Retourne la clé API de l'usager. Passer le paramètre 'nouvelle=1' pour en générer une nouvelle.",
+        "parameters": [
+          {
+            "name": "courriel",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
             },
-            {
-              "name": "mot_de_passe",
-              "in": "query",
-              "required": true,
-              "schema": { "type": "string" },
-              "example": "motdepasse123"
+            "example": "admin@victo.com"
+          },
+          {
+            "name": "mot_de_passe",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
             },
-            {
-              "name": "nouvelle",
-              "in": "query",
-              "required": false,
-              "schema": { "type": "string" },
-              "description": "Mettre à '1' pour régénérer une nouvelle clé API."
-            }
-          ],
-          "responses": {
-            "200": {
-              "description": "Clé API retournée",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "type": "object",
-                    "properties": {
-                      "cle_api": { "type": "string", "example": "3b241101-e2bb-4255-8caf-4136c566a962" }
+            "example": "motdepasse123"
+          },
+          {
+            "name": "nouvelle",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Mettre à '1' pour régénérer une nouvelle clé API."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Clé API retournée",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "cle_api": {
+                      "type": "string",
+                      "example": "3b241101-e2bb-4255-8caf-4136c566a962"
                     }
                   }
                 }
               }
-            },
-            "400": { "description": "Données manquantes" },
-            "401": { "description": "Identifiants invalides" },
-            "500": { "description": "Erreur interne du serveur" }
+            }
+          },
+          "400": {
+            "description": "Données manquantes"
+          },
+          "401": {
+            "description": "Identifiants invalides"
+          },
+          "500": {
+            "description": "Erreur interne du serveur"
           }
         }
-      },
+      }
+    },
     "/livres": {
       "get": {
-        "security": [{ "ApiKeyAuth": [] }],
-        "tags": ["Livres"],
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "tags": [
+          "Livres"
+        ],
         "summary": "Lister les livres de la bibliothèque",
         "description": "Retourne les livres de la bibliothèque associée à la clé API. Par défaut, affiche uniquement les livres disponibles.",
         "parameters": [
@@ -174,7 +294,13 @@
             "name": "tous",
             "in": "query",
             "required": false,
-            "schema": { "type": "string", "enum": ["true", "false"] },
+            "schema": {
+              "type": "string",
+              "enum": [
+                "true",
+                "false"
+              ]
+            },
             "description": "Mettre à 'true' pour inclure les livres empruntés."
           }
         ],
@@ -183,17 +309,46 @@
             "description": "Liste des livres récupérée avec succès",
             "content": {
               "application/json": {
-                "schema": { "type": "array", "items": { "$ref": "#/components/schemas/Livre" } }
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Livre"
+                  }
+                }
               }
             }
           },
-          "401": { "description": "Clé API manquante ou invalide", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Erreur" } } } },
-          "500": { "description": "Erreur interne du serveur", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Erreur" } } } }
+          "401": {
+            "description": "Clé API manquante ou invalide",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erreur"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erreur interne du serveur",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erreur"
+                }
+              }
+            }
+          }
         }
       },
       "post": {
-        "security": [{ "ApiKeyAuth": [] }],
-        "tags": ["Livres"],
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "tags": [
+          "Livres"
+        ],
         "summary": "Ajouter un nouveau livre",
         "description": "Ajoute un livre à la bibliothèque associée à la clé API.",
         "requestBody": {
@@ -202,12 +357,28 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": ["titre", "auteur", "isbn"],
+                "required": [
+                  "titre",
+                  "auteur",
+                  "isbn"
+                ],
                 "properties": {
-                  "titre": { "type": "string", "example": "Le Seigneur des Anneaux" },
-                  "auteur": { "type": "string", "example": "J.R.R. Tolkien" },
-                  "isbn": { "type": "string", "example": "978-2267024982" },
-                  "description": { "type": "string", "example": "Roman de fantasy épique." }
+                  "titre": {
+                    "type": "string",
+                    "example": "Le Seigneur des Anneaux"
+                  },
+                  "auteur": {
+                    "type": "string",
+                    "example": "J.R.R. Tolkien"
+                  },
+                  "isbn": {
+                    "type": "string",
+                    "example": "978-2267024982"
+                  },
+                  "description": {
+                    "type": "string",
+                    "example": "Roman de fantasy épique."
+                  }
                 }
               }
             }
@@ -216,39 +387,133 @@
         "responses": {
           "201": {
             "description": "Livre ajouté avec succès",
-            "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Livre" } } }
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Livre"
+                }
+              }
+            }
           },
-          "400": { "description": "Champs obligatoires manquants", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Erreur" } } } },
-          "401": { "description": "Clé API manquante ou invalide", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Erreur" } } } },
-          "500": { "description": "Erreur interne du serveur", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Erreur" } } } }
+          "400": {
+            "description": "Champs obligatoires manquants",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erreur"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Clé API manquante ou invalide",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erreur"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erreur interne du serveur",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erreur"
+                }
+              }
+            }
+          }
         }
       }
     },
     "/livres/{id}": {
       "get": {
-        "security": [{ "ApiKeyAuth": [] }],
-        "tags": ["Livres"],
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "tags": [
+          "Livres"
+        ],
         "summary": "Détail d'un livre avec ses prêts",
         "description": "Retourne les informations complètes d'un livre ainsi que l'historique de ses prêts avec un indicateur si le prêt est en cours ou terminé.",
         "parameters": [
-          { "name": "id", "in": "path", "required": true, "schema": { "type": "integer" }, "example": 1 }
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 1
+          }
         ],
         "responses": {
           "200": {
             "description": "Livre trouvé",
-            "content": { "application/json": { "schema": { "$ref": "#/components/schemas/LivreAvecPrets" } } }
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LivreAvecPrets"
+                }
+              }
+            }
           },
-          "401": { "description": "Clé API manquante ou invalide", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Erreur" } } } },
-          "404": { "description": "Livre introuvable", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Erreur" } } } },
-          "500": { "description": "Erreur interne du serveur", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Erreur" } } } }
+          "401": {
+            "description": "Clé API manquante ou invalide",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erreur"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Livre introuvable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erreur"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erreur interne du serveur",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erreur"
+                }
+              }
+            }
+          }
         }
       },
       "put": {
-        "security": [{ "ApiKeyAuth": [] }],
-        "tags": ["Livres"],
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "tags": [
+          "Livres"
+        ],
         "summary": "Modifier les informations d'un livre",
         "parameters": [
-          { "name": "id", "in": "path", "required": true, "schema": { "type": "integer" }, "example": 1 }
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 1
+          }
         ],
         "requestBody": {
           "required": true,
@@ -256,48 +521,165 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": ["titre", "auteur", "isbn"],
+                "required": [
+                  "titre",
+                  "auteur",
+                  "isbn"
+                ],
                 "properties": {
-                  "titre": { "type": "string" },
-                  "auteur": { "type": "string" },
-                  "isbn": { "type": "string" },
-                  "description": { "type": "string" }
+                  "titre": {
+                    "type": "string"
+                  },
+                  "auteur": {
+                    "type": "string"
+                  },
+                  "isbn": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  }
                 }
               }
             }
           }
         },
         "responses": {
-          "200": { "description": "Livre modifié avec succès", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Livre" } } } },
-          "401": { "description": "Clé API manquante ou invalide", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Erreur" } } } },
-          "404": { "description": "Livre introuvable", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Erreur" } } } },
-          "500": { "description": "Erreur interne du serveur", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Erreur" } } } }
+          "200": {
+            "description": "Livre modifié avec succès",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Livre"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Clé API manquante ou invalide",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erreur"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Livre introuvable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erreur"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erreur interne du serveur",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erreur"
+                }
+              }
+            }
+          }
         }
       },
       "delete": {
-        "security": [{ "ApiKeyAuth": [] }],
-        "tags": ["Livres"],
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "tags": [
+          "Livres"
+        ],
         "summary": "Supprimer un livre",
         "description": "Supprime un livre et tous ses prêts associés (CASCADE).",
         "parameters": [
-          { "name": "id", "in": "path", "required": true, "schema": { "type": "integer" }, "example": 1 }
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 1
+          }
         ],
         "responses": {
-          "200": { "description": "Livre supprimé avec succès", "content": { "application/json": { "schema": { "type": "object", "properties": { "message": { "type": "string" } } } } } },
-          "401": { "description": "Clé API manquante ou invalide", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Erreur" } } } },
-          "404": { "description": "Livre introuvable", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Erreur" } } } },
-          "500": { "description": "Erreur interne du serveur", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Erreur" } } } }
+          "200": {
+            "description": "Livre supprimé avec succès",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Clé API manquante ou invalide",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erreur"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Livre introuvable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erreur"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erreur interne du serveur",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erreur"
+                }
+              }
+            }
+          }
         }
       }
     },
     "/livres/{id}/statut": {
       "patch": {
-        "security": [{ "ApiKeyAuth": [] }],
-        "tags": ["Livres"],
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "tags": [
+          "Livres"
+        ],
         "summary": "Modifier le statut d'un livre",
         "description": "Change manuellement le statut d'un livre entre 'disponible' et 'emprunté'.",
         "parameters": [
-          { "name": "id", "in": "path", "required": true, "schema": { "type": "integer" }, "example": 1 }
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 1
+          }
         ],
         "requestBody": {
           "required": true,
@@ -305,31 +687,99 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": ["statut"],
+                "required": [
+                  "statut"
+                ],
                 "properties": {
-                  "statut": { "type": "string", "enum": ["disponible", "emprunté"], "example": "emprunté" }
+                  "statut": {
+                    "type": "string",
+                    "enum": [
+                      "disponible",
+                      "emprunté"
+                    ],
+                    "example": "emprunté"
+                  }
                 }
               }
             }
           }
         },
         "responses": {
-          "200": { "description": "Statut modifié avec succès", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Livre" } } } },
-          "400": { "description": "Statut invalide", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Erreur" } } } },
-          "401": { "description": "Clé API manquante ou invalide", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Erreur" } } } },
-          "404": { "description": "Livre introuvable", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Erreur" } } } },
-          "500": { "description": "Erreur interne du serveur", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Erreur" } } } }
+          "200": {
+            "description": "Statut modifié avec succès",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Livre"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Statut invalide",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erreur"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Clé API manquante ou invalide",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erreur"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Livre introuvable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erreur"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erreur interne du serveur",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erreur"
+                }
+              }
+            }
+          }
         }
       }
     },
     "/livres/{livreId}/prets": {
       "post": {
-        "security": [{ "ApiKeyAuth": [] }],
-        "tags": ["Prêts"],
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "tags": [
+          "Prêts"
+        ],
         "summary": "Ajouter un prêt à un livre",
         "description": "Enregistre un nouveau prêt pour un livre et change automatiquement le statut du livre à 'emprunté'.",
         "parameters": [
-          { "name": "livreId", "in": "path", "required": true, "schema": { "type": "integer" }, "example": 1 }
+          {
+            "name": "livreId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 1
+          }
         ],
         "requestBody": {
           "required": true,
@@ -337,31 +787,91 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": ["nom_emprunteur", "date_retour_prevue"],
+                "required": [
+                  "nom_emprunteur",
+                  "date_retour_prevue"
+                ],
                 "properties": {
-                  "nom_emprunteur": { "type": "string", "example": "Marie Tremblay" },
-                  "date_retour_prevue": { "type": "string", "format": "date", "example": "2026-05-30" }
+                  "nom_emprunteur": {
+                    "type": "string",
+                    "example": "Marie Tremblay"
+                  },
+                  "date_retour_prevue": {
+                    "type": "string",
+                    "format": "date",
+                    "example": "2026-05-30"
+                  }
                 }
               }
             }
           }
         },
         "responses": {
-          "201": { "description": "Prêt créé avec succès", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Pret" } } } },
-          "400": { "description": "Champs obligatoires manquants", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Erreur" } } } },
-          "401": { "description": "Clé API manquante ou invalide", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Erreur" } } } },
-          "500": { "description": "Erreur interne du serveur", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Erreur" } } } }
+          "201": {
+            "description": "Prêt créé avec succès",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Pret"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Champs obligatoires manquants",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erreur"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Clé API manquante ou invalide",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erreur"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erreur interne du serveur",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erreur"
+                }
+              }
+            }
+          }
         }
       }
     },
     "/prets/{id}/statut": {
       "patch": {
-        "security": [{ "ApiKeyAuth": [] }],
-        "tags": ["Prêts"],
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "tags": [
+          "Prêts"
+        ],
         "summary": "Modifier le statut d'un prêt",
         "description": "Termine un prêt en passant 'est_termine' à true. Le livre redevient automatiquement disponible.",
         "parameters": [
-          { "name": "id", "in": "path", "required": true, "schema": { "type": "integer" }, "example": 1 }
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 1
+          }
         ],
         "requestBody": {
           "required": true,
@@ -369,36 +879,208 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": ["est_termine"],
+                "required": [
+                  "est_termine"
+                ],
                 "properties": {
-                  "est_termine": { "type": "boolean", "example": true }
+                  "est_termine": {
+                    "type": "boolean",
+                    "example": true
+                  }
                 }
               }
             }
           }
         },
         "responses": {
-          "200": { "description": "Statut du prêt modifié avec succès", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Pret" } } } },
-          "400": { "description": "Champ est_termine invalide", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Erreur" } } } },
-          "401": { "description": "Clé API manquante ou invalide", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Erreur" } } } },
-          "404": { "description": "Prêt introuvable", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Erreur" } } } },
-          "500": { "description": "Erreur interne du serveur", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Erreur" } } } }
+          "200": {
+            "description": "Statut du prêt modifié avec succès",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Pret"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Champ est_termine invalide",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erreur"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Clé API manquante ou invalide",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erreur"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Prêt introuvable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erreur"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erreur interne du serveur",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erreur"
+                }
+              }
+            }
+          }
         }
       }
     },
     "/prets/{id}": {
+      "put": {
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "tags": [
+          "Prêts"
+        ],
+        "summary": "Modifier un prêt",
+        "description": "Modifie le nom de l'emprunteur et la date de retour prévue d'un prêt existant.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 10
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "nom_emprunteur",
+                  "date_retour_prevue"
+                ],
+                "properties": {
+                  "nom_emprunteur": {
+                    "type": "string",
+                    "example": "Jean Tremblay"
+                  },
+                  "date_retour_prevue": {
+                    "type": "string",
+                    "format": "date",
+                    "example": "2026-06-01"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Prêt modifié avec succès",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Pret"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Champs obligatoires manquants",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erreur"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Clé API manquante ou invalide",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erreur"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Prêt introuvable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erreur"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erreur interne du serveur",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Erreur"
+                }
+              }
+            }
+          }
+        }
+      },
       "delete": {
-        "security": [{ "ApiKeyAuth": [] }],
-        "tags": ["Prêts"],
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "tags": [
+          "Prêts"
+        ],
         "summary": "Supprimer un prêt",
         "parameters": [
-          { "name": "id", "in": "path", "required": true, "schema": { "type": "integer" }, "example": 1 }
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 1
+          }
         ],
         "responses": {
-          "200": { "description": "Prêt supprimé avec succès" },
-          "401": { "description": "Clé API manquante ou invalide" },
-          "404": { "description": "Prêt introuvable" },
-          "500": { "description": "Erreur interne du serveur" }
+          "200": {
+            "description": "Prêt supprimé avec succès"
+          },
+          "401": {
+            "description": "Clé API manquante ou invalide"
+          },
+          "404": {
+            "description": "Prêt introuvable"
+          },
+          "500": {
+            "description": "Erreur interne du serveur"
+          }
         }
       }
     }
