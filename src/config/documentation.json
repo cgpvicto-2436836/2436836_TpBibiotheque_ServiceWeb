@@ -1045,41 +1045,143 @@
               }
             }
           }
-        }
-      },
-      "delete": {
-        "security": [
-          {
-            "ApiKeyAuth": []
-          }
-        ],
-        "tags": [
-          "Prêts"
-        ],
-        "summary": "Supprimer un prêt",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer"
+        },
+        "/prets/{id}": {
+          "put": {
+            "security": [
+              {
+                "ApiKeyAuth": []
+              }
+            ],
+            "tags": [
+              "Prêts"
+            ],
+            "summary": "Modifier un prêt",
+            "description": "Modifie le nom de l'emprunteur et la date de retour prévue d'un prêt existant.",
+            "parameters": [
+              {
+                "name": "id",
+                "in": "path",
+                "required": true,
+                "schema": {
+                  "type": "integer"
+                },
+                "example": 10
+              }
+            ],
+            "requestBody": {
+              "required": true,
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "required": [
+                      "nom_emprunteur",
+                      "date_retour_prevue"
+                    ],
+                    "properties": {
+                      "nom_emprunteur": {
+                        "type": "string",
+                        "example": "Jean Tremblay"
+                      },
+                      "date_retour_prevue": {
+                        "type": "string",
+                        "format": "date",
+                        "example": "2026-06-01"
+                      }
+                    }
+                  }
+                }
+              }
             },
-            "example": 1
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Prêt supprimé avec succès"
+            "responses": {
+              "200": {
+                "description": "Prêt modifié avec succès",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "$ref": "#/components/schemas/Pret"
+                    }
+                  }
+                }
+              },
+              "400": {
+                "description": "Champs obligatoires manquants",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "$ref": "#/components/schemas/Erreur"
+                    }
+                  }
+                }
+              },
+              "401": {
+                "description": "Clé API manquante ou invalide",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "$ref": "#/components/schemas/Erreur"
+                    }
+                  }
+                }
+              },
+              "404": {
+                "description": "Prêt introuvable",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "$ref": "#/components/schemas/Erreur"
+                    }
+                  }
+                }
+              },
+              "500": {
+                "description": "Erreur interne du serveur",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "$ref": "#/components/schemas/Erreur"
+                    }
+                  }
+                }
+              }
+            }
           },
-          "401": {
-            "description": "Clé API manquante ou invalide"
-          },
-          "404": {
-            "description": "Prêt introuvable"
-          },
-          "500": {
-            "description": "Erreur interne du serveur"
+          "delete": {
+            "security": [
+              {
+                "ApiKeyAuth": []
+              }
+            ],
+            "tags": [
+              "Prêts"
+            ],
+            "summary": "Supprimer un prêt",
+            "parameters": [
+              {
+                "name": "id",
+                "in": "path",
+                "required": true,
+                "schema": {
+                  "type": "integer"
+                },
+                "example": 1
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "Prêt supprimé avec succès"
+              },
+              "401": {
+                "description": "Clé API manquante ou invalide"
+              },
+              "404": {
+                "description": "Prêt introuvable"
+              },
+              "500": {
+                "description": "Erreur interne du serveur"
+              }
+            }
           }
         }
       }
