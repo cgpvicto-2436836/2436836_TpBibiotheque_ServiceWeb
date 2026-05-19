@@ -794,7 +794,7 @@
                 "properties": {
                   "nom_emprunteur": {
                     "type": "string",
-                    "example": "Marie Tremblay"
+                    "example": "Maxime Vallières"
                   },
                   "date_retour_prevue": {
                     "type": "string",
@@ -982,7 +982,7 @@
                 "properties": {
                   "nom_emprunteur": {
                     "type": "string",
-                    "example": "Jean Tremblay"
+                    "example": "Maxime Vallières"
                   },
                   "date_retour_prevue": {
                     "type": "string",
@@ -1082,7 +1082,7 @@
                     "properties": {
                       "nom_emprunteur": {
                         "type": "string",
-                        "example": "Jean Tremblay"
+                        "example": "Maxime Vallières"
                       },
                       "date_retour_prevue": {
                         "type": "string",
