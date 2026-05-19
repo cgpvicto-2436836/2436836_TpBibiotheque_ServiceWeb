@@ -26,16 +26,15 @@ const swaggerOptions = {
 // Middleware pour parser le JSON
 app.use(express.json());
 
-// Middleware pour Cross-Origin Resource Sharing (les erreur html)
+// Middleware pour Cross-Origin Resource Sharing (Pour les erreur html)
 app.use(cors());
 
 
-// Journalisation (Morgan) - Écrit les logs dans access.log
-const accessLogStream = fs.createWriteStream(path.join(__dirname, 'access.log'), { flags: 'a' });
-app.use(morgan(':date[clf] => :method :url :status - :response-time ms', { stream: accessLogStream }));
-app.use(morgan('dev'));
+// Journalisation - Écrit les logs dans access.log (Modifer car je n'avais plus ma sources)
+var accessLogStream = fs.createWriteStream('./access.log', { flags: 'a' })
+app.use(morgan('dev', { stream: accessLogStream }))
 
-// Route de base
+// Route de base (user/prêt/livres)
 app.get('/api', (req, res) => {
     res.json({ message: "Bienvenue sur l'API de gestion de la bibliothèque !" });
 });
@@ -56,6 +55,6 @@ app.use((req, res) => {
 
 // Démarrage du serveur
 app.listen(PORT, () => {
-    console.log(`\x1b[32m%s\x1b[0m`, `[Serveur] Démarré sur http://localhost:${PORT}`);
-    console.log(`\x1b[36m%s\x1b[0m`, `[Docs] Documentation disponible sur http://localhost:${PORT}/api/docs`);
+    console.log("[Serveur] Démarré sur http://localhost:3000");
+    console.log("[Docs] Documentation disponible sur http://localhost:3000/api/docs");
 });
